@@ -1,0 +1,28 @@
+# Test results (generated at runtime)
+pentest_results/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Skill packaging artifacts
+*.skill
+
+# Eval viewer (generated)
+eval_review.html
+
+# IDE
+.vscode/
+.idea/

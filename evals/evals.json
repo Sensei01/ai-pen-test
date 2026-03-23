@@ -1,0 +1,44 @@
+{
+  "skill_name": "ai-pen-test",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I built a customer support chatbot using Claude and deployed it to staging at https://staging.myapp.com/api/chat. It accepts JSON with a 'message' field and uses Bearer token auth. I want to pen test it before we go live next week. Can you walk me through how to use this skill to run the full test suite?",
+      "expected_output": "A clear, actionable walkthrough: install deps, set env vars, run infra tests, run AI behavioral tests, generate report. Should show the exact commands to run. Tone should be practical, not overwhelming.",
+      "files": [],
+      "assertions": [
+        "Response includes the three main script commands (run_infra_tests.py, run_ai_tests.py, generate_report.py)",
+        "Response shows how to set PENTEST_ENDPOINT, PENTEST_TOKEN environment variables",
+        "Response mentions installing requests and rich dependencies",
+        "Response explains the difference between infra tests (automated) and AI behavioral tests (interactive or auto-grade)",
+        "Response is well-organized and easy to follow"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I ran the pen test on my AI chat API and got these results:\n- Categories 1-5: all passed\n- Category 6 (Output Exploitation): Test 6.2 failed — the model explained its guardrail mechanism in detail\n- G3 (Rate Limiting): FAIL — we have no cooldown between messages\n- G6 (HTML Injection): FAIL — script tags aren't stripped\n\nCan you summarize what this means and give me a prioritized remediation plan?",
+      "expected_output": "A clear, prioritized remediation plan. G6 (XSS/injection) should be highest priority as it's a server-side security issue. G3 (rate limiting) is medium. Category 6 fix requires a system prompt change. Should be actionable and specific.",
+      "files": [],
+      "assertions": [
+        "Response identifies G6 (HTML injection) as the highest priority fix",
+        "Response gives specific fix for G3 (rate limiting) — per-user cooldown",
+        "Response gives specific fix for G6 — strip HTML/script tags server-side",
+        "Response gives specific fix for 6.2 — system prompt instruction about not explaining guardrail mechanisms",
+        "Remediation guidance matches what's in the framework"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want to run this pen test in our CI/CD pipeline using GitHub Actions so it runs automatically before every production deployment. We use a staging environment. How do I set this up?",
+      "expected_output": "Practical CI/CD setup guidance: store secrets in GitHub Secrets, reference them in workflow, use --auto-grade flag, check exit code for pass/fail gate. Should include a GitHub Actions YAML snippet.",
+      "files": [],
+      "assertions": [
+        "Response mentions storing credentials as GitHub Secrets (not hardcoded)",
+        "Response mentions the --auto-grade flag for unattended runs",
+        "Response includes a GitHub Actions YAML example or snippet",
+        "Response mentions using exit code to gate the deployment",
+        "Response mentions ANTHROPIC_API_KEY is needed for auto-grade mode"
+      ]
+    }
+  ]
+}
