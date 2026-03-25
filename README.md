@@ -221,19 +221,46 @@ The infrastructure test script exits with code `1` if any tests fail, which bloc
 
 ---
 
-## Using as a Claude Skill
+## Install as a Claude Skill
 
-This framework is also packaged as a **Claude skill** — a prompt + scripts that Claude can invoke when you describe a security testing need.
+This framework is also packaged as a **Claude skill** — once installed, Claude automatically picks it up whenever you describe a security testing need and guides you through the full workflow.
 
-Install it in [Claude Code](https://docs.claude.ai/claude-code) or Cowork by copying the `SKILL.md` and `scripts/` to your skills folder. Once installed, you can say things like:
+### Using npx (recommended)
+
+```bash
+npx skills add Sensei01/ai-pen-test
+```
+
+Install globally (available across all projects):
+
+```bash
+npx skills add Sensei01/ai-pen-test -g
+```
+
+Install for a specific agent:
+
+```bash
+npx skills add Sensei01/ai-pen-test -a claude-code
+```
+
+Works with Claude Code, Cursor, Windsurf, OpenCode, Codex, and 40+ other agents.
+
+### Manual (git clone)
+
+```bash
+git clone https://github.com/Sensei01/ai-pen-test ~/.claude/skills/ai-pen-test
+```
+
+### Usage
+
+Once installed, the skill triggers automatically when you ask Claude to:
 
 - *"Pen test my AI chat feature at https://staging.myapp.com/api/chat"*
 - *"Is my chatbot leaking its system prompt?"*
 - *"Run the AI guardrail tests and give me a remediation plan"*
+- *"Check my LLM API before we go live"*
 
-Claude will guide you through the full setup, run the tests, and interpret the results.
-
-**Supported environments:** Claude Code, Windsurf, Cursor, Replit, GitHub Actions, any terminal with Python 3.8+.
+Claude will guide you through setup, run the tests, and interpret the results.
 
 ---
 
